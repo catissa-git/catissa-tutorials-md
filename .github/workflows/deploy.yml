@@ -9,13 +9,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Install Neocities CLI
         run: npm install -g neocities
 
-      - name: Deploy tutorials folder
-        run: npx neocities push tutorials --dir tutorials --prune
+      - name: Deploy
+        run: $(npm config get prefix)/bin/neocities push tutorials --dir tutorials --prune
         env:
           NEOCITIES_API_KEY: ${{ secrets.NEOCITIES_API_KEY }}
