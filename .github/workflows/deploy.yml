@@ -11,9 +11,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Deploy to Neocities
-        uses: bcomnes/deploy-to-neocities@v3
-        with:
-          api_key: ${{ secrets.NEOCITIES_API_KEY }}
-          dist_dir: tutorials
-          site_dir: tutorials
+      - name: Install Neocities CLI (local)
+        run: npm install neocities
+
+      - name: Deploy to /tutorials
+        run: ./node_modules/.bin/neocities push tutorials --dir tutorials
+        env:
+          NEOCITIES_API_KEY: ${{ secrets.NEOCITIES_API_KEY }}
