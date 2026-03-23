@@ -11,15 +11,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Prepare deploy folder
-        run: |
-          mkdir deploy
-          cp -r tutorials deploy/tutorials
-
-      - name: Install Neocities CLI
-        run: npm install neocities
-
-      - name: Deploy
-        run: ./node_modules/.bin/neocities push deploy
-        env:
-          NEOCITIES_API_KEY: ${{ secrets.NEOCITIES_API_KEY }}
+      - name: Deploy to Neocities
+        uses: bcomnes/deploy-to-neocities@v3
+        with:
+          api_key: ${{ secrets.NEOCITIES_API_KEY }}
+          dist_dir: src
