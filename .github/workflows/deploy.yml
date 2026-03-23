@@ -16,3 +16,5 @@ jobs:
         with:
           api_key: ${{ secrets.NEOCITIES_API_KEY }}
           dist_dir: tutorials
+          site_dir: tutorials
+          cleanup: true
