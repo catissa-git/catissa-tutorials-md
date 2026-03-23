@@ -1,0 +1,21 @@
+name: Deploy folder
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Neocities CLI
+        run: npm install -g neocities
+
+      - name: Deploy tutorials folder
+        run: neocities push tutorials --dir tutorials --prune
+        env:
+          NEOCITIES_API_KEY: ${{ secrets.NEOCITIES_API_KEY }}
