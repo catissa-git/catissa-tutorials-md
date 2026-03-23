@@ -1,0 +1,3 @@
+hover=This is the hint text shown when you hover. (EN)
+files=teste2
+global=**notglobal** || local hint
