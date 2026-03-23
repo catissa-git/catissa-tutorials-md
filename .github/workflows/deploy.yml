@@ -1,6 +1,5 @@
 name: Deploy folder
 
-on:
   push:
     branches: [ "main" ]
 
@@ -11,10 +10,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Neocities CLI (local)
+      - name: Prepare deploy folder
+        run: |
+          mkdir deploy
+          cp -r tutorials deploy/tutorials
+
+      - name: Install Neocities CLI
         run: npm install neocities
 
-      - name: Deploy to /tutorials
-        run: ./node_modules/.bin/neocities push tutorials --dir tutorials
+      - name: Deploy
+        run: ./node_modules/.bin/neocities push deploy
         env:
           NEOCITIES_API_KEY: ${{ secrets.NEOCITIES_API_KEY }}
