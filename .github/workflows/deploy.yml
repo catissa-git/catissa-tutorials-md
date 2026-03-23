@@ -1,6 +1,7 @@
 name: Deploy folder
 
-push:
+on:
+  push:
     branches: [ "main" ]
 
 jobs:
